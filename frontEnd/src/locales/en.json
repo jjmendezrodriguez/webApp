@@ -1,0 +1,133 @@
+{
+  "auth": {
+    "login": {
+      "title": "Log In",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log In",
+      "loading": "Logging in...",
+      "cancel": "Cancel",
+      "forgotPassword": "Forgot your password?",
+      "createAccount": "Create account",
+      "orContinueWith": "Or continue with",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "signup": {
+      "title": "Create Account",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Create Account",
+      "loading": "Creating account...",
+      "cancel": "Cancel",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Log in",
+      "passwordRequirements": "Password Requirements:",
+      "requirement8Chars": "At least 8 characters",
+      "requirementUppercase": "At least 1 uppercase letter",
+      "requirementNumber": "At least 1 number",
+      "passwordStrength": {
+        "weak": "Weak",
+        "medium": "Medium",
+        "strong": "Strong"
+      }
+    },
+    "errors": {
+      "invalidValue": "Invalid value",
+      "invalidEmail": "Invalid email",
+      "invalidName": "Name can only contain letters",
+      "nameTooShort": "Name must be at least 2 characters",
+      "passwordsDontMatch": "Passwords don't match",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordNoUppercase": "Password must contain at least 1 uppercase letter",
+      "passwordNoNumber": "Password must contain at least 1 number",
+      "invalidCredentials": "Invalid Credentials",
+      "invalidCredentialsMessage": "The credentials entered are incorrect.",
+      "noAccount": "Don't have an account?",
+      "createAccountLink": "Create an account",
+      "loginError": "Error logging in. Please try again.",
+      "signupError": "Error creating account. Please try again."
+    },
+    "success": {
+      "accountCreated": "Account created successfully!",
+      "checkEmail": "Check your email to verify your account."
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "welcomeWithName": "Welcome, {{name}}",
+    "hello": "Hello, {{name}}",
+    "controlPanel": "Control Panel",
+    "userEmail": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "bio": "Bio",
+    "editProfile": "Edit Profile",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Error updating profile",
+    "bioPlaceholder": "Tell us about yourself...",
+    "tabs": {
+      "profile": "Profile",
+      "settings": "Settings"
+    },
+    "profile": {
+      "title": "Personal Information",
+      "subtitle": "Update your personal information",
+      "accountSecurity": "Account Security",
+      "changeEmail": "Change Email",
+      "changePassword": "Change Password",
+      "dangerZone": "Danger Zone",
+      "deleteAccount": "Delete Account",
+      "deleteAccountWarning": "Once deleted, your account cannot be recovered."
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Configure your preferences",
+      "language": "Preferred Language",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "saveSettings": "Save Settings",
+      "settingsSaved": "Settings saved"
+    },
+    "changeEmail": {
+      "title": "Change Email",
+      "newEmail": "New Email",
+      "currentPassword": "Current Password",
+      "submit": "Change Email",
+      "cancel": "Cancel",
+      "success": "Email updated successfully",
+      "error": "Error changing email",
+      "invalidPassword": "Incorrect password"
+    },
+    "changePassword": {
+      "title": "Change Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Change Password",
+      "cancel": "Cancel",
+      "success": "Password updated successfully",
+      "error": "Error changing password",
+      "passwordsDontMatch": "Passwords don't match",
+      "passwordTooShort": "Password must be at least 6 characters"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "warning": "This action is permanent and irreversible. All your data will be deleted.",
+      "typeDelete": "Type DELETE to confirm",
+      "enterPassword": "Enter your password to confirm",
+      "deleteButton": "Permanently delete my account",
+      "cancel": "Cancel",
+      "success": "Account deleted successfully",
+      "error": "Error deleting account",
+      "invalidPassword": "Incorrect password",
+      "confirmationMismatch": "You must type 'DELETE' exactly"
+    }
+  }
+}

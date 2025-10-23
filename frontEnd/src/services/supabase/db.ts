@@ -1,0 +1,26 @@
+// Supabase client singleton for database operations
+// Import this client in any component/service that needs database access
+
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { supabaseConfig, validateSupabaseConfig } from "./config";
+
+// Validate environment variables on initialization
+validateSupabaseConfig();
+
+/**
+ * Supabase client instance
+ * Configured with environment variables from .env file
+ *
+ * Usage example:
+ * ```typescript
+ * import { supabase } from '@/services/supabase/db'
+ *
+ * const { data, error } = await supabase
+ *   .from('users')
+ *   .select('*')
+ * ```
+ */
+export const supabase: SupabaseClient = createClient(
+  supabaseConfig.url,
+  supabaseConfig.anonKey,
+);

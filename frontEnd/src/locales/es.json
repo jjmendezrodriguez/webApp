@@ -1,0 +1,133 @@
+{
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "email": "Email",
+      "password": "Contraseña",
+      "submit": "Iniciar Sesión",
+      "loading": "Iniciando sesión...",
+      "cancel": "Cancelar",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "createAccount": "Crear cuenta",
+      "orContinueWith": "O continúa con",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña"
+    },
+    "signup": {
+      "title": "Crear Cuenta",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Email",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "submit": "Crear Cuenta",
+      "loading": "Creando cuenta...",
+      "cancel": "Cancelar",
+      "alreadyHaveAccount": "¿Ya tienes cuenta?",
+      "login": "Inicia sesión",
+      "passwordRequirements": "Requisitos de Contraseña:",
+      "requirement8Chars": "Al menos 8 caracteres",
+      "requirementUppercase": "Al menos 1 letra mayúscula",
+      "requirementNumber": "Al menos 1 número",
+      "passwordStrength": {
+        "weak": "Débil",
+        "medium": "Media",
+        "strong": "Fuerte"
+      }
+    },
+    "errors": {
+      "invalidValue": "Valor inválido",
+      "invalidEmail": "Email inválido",
+      "invalidName": "El nombre solo puede contener letras",
+      "nameTooShort": "El nombre debe tener al menos 2 caracteres",
+      "passwordsDontMatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+      "passwordNoUppercase": "La contraseña debe contener al menos 1 letra mayúscula",
+      "passwordNoNumber": "La contraseña debe contener al menos 1 número",
+      "invalidCredentials": "Credenciales Inválidas",
+      "invalidCredentialsMessage": "Las credenciales ingresadas no son correctas.",
+      "noAccount": "¿No tienes cuenta?",
+      "createAccountLink": "Crea una cuenta",
+      "loginError": "Error al iniciar sesión. Intenta nuevamente.",
+      "signupError": "Error al crear cuenta. Intenta nuevamente."
+    },
+    "success": {
+      "accountCreated": "¡Cuenta creada exitosamente!",
+      "checkEmail": "Revisa tu email para verificar tu cuenta."
+    }
+  },
+  "dashboard": {
+    "welcome": "Bienvenido",
+    "welcomeWithName": "Bienvenido, {{name}}",
+    "hello": "Hola, {{name}}",
+    "controlPanel": "Panel de Control",
+    "userEmail": "Email",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "bio": "Biografía",
+    "editProfile": "Editar Perfil",
+    "saveChanges": "Guardar Cambios",
+    "cancel": "Cancelar",
+    "updateSuccess": "Perfil actualizado exitosamente",
+    "updateError": "Error al actualizar perfil",
+    "bioPlaceholder": "Cuéntanos sobre ti...",
+    "tabs": {
+      "profile": "Perfil",
+      "settings": "Configuración"
+    },
+    "profile": {
+      "title": "Información Personal",
+      "subtitle": "Actualiza tu información personal",
+      "accountSecurity": "Seguridad de la Cuenta",
+      "changeEmail": "Cambiar Email",
+      "changePassword": "Cambiar Contraseña",
+      "dangerZone": "Zona de Peligro",
+      "deleteAccount": "Eliminar Cuenta",
+      "deleteAccountWarning": "Una vez eliminada, tu cuenta no se puede recuperar."
+    },
+    "settings": {
+      "title": "Configuración",
+      "subtitle": "Configura tus preferencias",
+      "language": "Idioma Preferido",
+      "theme": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "saveSettings": "Guardar Configuración",
+      "settingsSaved": "Configuración guardada"
+    },
+    "changeEmail": {
+      "title": "Cambiar Email",
+      "newEmail": "Nuevo Email",
+      "currentPassword": "Contraseña Actual",
+      "submit": "Cambiar Email",
+      "cancel": "Cancelar",
+      "success": "Email actualizado exitosamente",
+      "error": "Error al cambiar email",
+      "invalidPassword": "Contraseña incorrecta"
+    },
+    "changePassword": {
+      "title": "Cambiar Contraseña",
+      "currentPassword": "Contraseña Actual",
+      "newPassword": "Nueva Contraseña",
+      "confirmPassword": "Confirmar Nueva Contraseña",
+      "submit": "Cambiar Contraseña",
+      "cancel": "Cancelar",
+      "success": "Contraseña actualizada exitosamente",
+      "error": "Error al cambiar contraseña",
+      "passwordsDontMatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    },
+    "deleteAccount": {
+      "title": "Eliminar Cuenta",
+      "warning": "Esta acción es permanente e irreversible. Toda tu información será eliminada.",
+      "typeDelete": "Escribe DELETE para confirmar",
+      "enterPassword": "Ingresa tu contraseña para confirmar",
+      "deleteButton": "Eliminar mi cuenta permanentemente",
+      "cancel": "Cancelar",
+      "success": "Cuenta eliminada exitosamente",
+      "error": "Error al eliminar cuenta",
+      "invalidPassword": "Contraseña incorrecta",
+      "confirmationMismatch": "Debes escribir 'DELETE' exactamente"
+    }
+  }
+}
