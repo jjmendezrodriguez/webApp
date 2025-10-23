@@ -1,9 +1,0 @@
-# Bun configuration file
-# https://bun.sh/docs/runtime/bunfig
-
-[install]
-# Use binary lockfile format for better performance and compatibility
-lockfile.format = "binary"
-
-# Registry configuration
-registry = "https://registry.npmjs.org"

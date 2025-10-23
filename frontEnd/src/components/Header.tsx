@@ -16,6 +16,7 @@ export default function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   /**
    * Get user's full name from profile or user metadata
@@ -113,8 +114,8 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Navigation links - Center */}
-          <nav className="flex gap-6">
+          {/* Desktop Navigation - Hidden on mobile */}
+          <nav className="hidden gap-6 md:flex">
             <Link
               to="/"
               className={`transition-colors hover:text-gray-600 ${
@@ -145,14 +146,89 @@ export default function Header() {
             )}
           </nav>
 
-          {/* Auth button and Language Switcher - Right side */}
-          <div className="flex items-center gap-3">
+          {/* Desktop Auth button and Language Switcher - Hidden on mobile */}
+          <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher />
             <button className="btn" onClick={handleAuthClick}>
               {isAuthenticated ? "Logout" : "Login"}
             </button>
           </div>
+
+          {/* Mobile Hamburger Menu Button - Visible only on mobile */}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {mobileMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Menu - Visible when open */}
+        {mobileMenuOpen && (
+          <div className="border-t bg-white md:hidden">
+            <nav className="flex flex-col px-4 py-2">
+              <Link
+                to="/"
+                className={`py-2 transition-colors hover:text-gray-600 ${
+                  isActiveRoute("/") ? "font-semibold text-blue-600" : ""
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to="/info"
+                className={`py-2 transition-colors hover:text-gray-600 ${
+                  isActiveRoute("/info") ? "font-semibold text-blue-600" : ""
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Info
+              </Link>
+              {isAuthenticated && (
+                <Link
+                  to="/user"
+                  className={`py-2 transition-colors hover:text-gray-600 ${
+                    isActiveRoute("/user")
+                      ? "font-semibold text-blue-600"
+                      : "text-gray-700"
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {getUserName()}
+                </Link>
+              )}
+              <div className="my-2 border-t"></div>
+              <div className="py-2">
+                <LanguageSwitcher />
+              </div>
+              <button
+                className="btn mt-2"
+                onClick={() => {
+                  handleAuthClick();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {isAuthenticated ? "Logout" : "Login"}
+              </button>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Login Modal */}

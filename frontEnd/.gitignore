@@ -27,3 +27,7 @@ dist-ssr
 
 # mendez preferences style
 AGENTS.md
+
+#security files
+SECURITY_FIXES.md
+SECURITY_STATUS.md

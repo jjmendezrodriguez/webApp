@@ -194,34 +194,37 @@ export default function Home() {
         </div>
       )}
 
-      {/* House icon with light effect */}
+      {/* House icon with light effect - Responsive size */}
       <div
-        className="relative z-10 text-9xl transition-all duration-500"
+        className="relative z-10 transition-all duration-500 sm:text-8xl md:text-[10rem] lg:text-[12rem]"
         style={lightStyle}
       >
         {isOn ? "🏠" : "🏚️"}
       </div>
 
-      <h1 className="relative z-10 text-center text-4xl font-bold capitalize">
+      <h1 className="relative z-10 text-center text-3xl font-bold capitalize sm:text-4xl md:text-5xl">
         casa campo
       </h1>
 
-      <div className="card relative z-10 text-center">
-        <div className="flex gap-3">
-          <button className="btn" onClick={() => setIsOn((on) => !on)}>
+      <div className="card relative z-10 w-full max-w-lg text-center">
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <button
+            className="btn w-full sm:w-auto"
+            onClick={() => setIsOn((on) => !on)}
+          >
             {isOn ? "Apagar luz 💡" : "Prender luz 🕯️"}
           </button>
           <button
-            className="btn bg-blue-500 hover:bg-blue-600"
+            className="btn w-full bg-blue-500 hover:bg-blue-600 sm:w-auto"
             onClick={triggerRain}
           >
             Lluvia 🌧️
           </button>
           <button
-            className="btn bg-green-500 hover:bg-green-600"
+            className="btn w-full bg-green-500 hover:bg-green-600 sm:w-auto"
             onClick={triggerWind}
           >
-            Viento ⁉️
+            Viento 🍃
           </button>
         </div>
         <p className="mt-4 text-sm text-gray-600">

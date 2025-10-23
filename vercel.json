@@ -1,0 +1,13 @@
+{
+  "buildCommand": "cd frontEnd && bun install && bun run build",
+  "outputDirectory": "frontEnd/dist",
+  "framework": "vite",
+  "installCommand": "cd frontEnd && bun install",
+  "devCommand": "cd frontEnd && bun run dev",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

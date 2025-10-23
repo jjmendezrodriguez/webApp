@@ -51,11 +51,13 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-start gap-6 p-6 pt-10">
-      <h1 className="text-4xl font-bold text-gray-800">{getGreeting()}</h1>
+    <div className="flex min-h-screen flex-col items-center justify-start gap-4 p-4 pt-6 sm:gap-6 sm:p-6 sm:pt-10">
+      <h1 className="text-center text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
+        {getGreeting()}
+      </h1>
 
-      <div className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-6 text-2xl font-semibold">
+      <div className="w-full max-w-4xl rounded-lg bg-white p-4 shadow-md sm:p-6">
+        <h2 className="mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">
           {t("dashboard.controlPanel")}
         </h2>
 

@@ -134,7 +134,7 @@ export default function ForgotPasswordModal({
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         {/* Backdrop overlay */}
         <div
           className="fixed inset-0 bg-black opacity-50"
@@ -142,18 +142,18 @@ export default function ForgotPasswordModal({
           aria-hidden="true"
         />
 
-        {/* Modal content */}
+        {/* Modal content - Responsive */}
         <div
-          className="z-10 w-full max-w-md rounded-lg bg-white p-6 shadow-[1px_1px_50px] shadow-blue-500"
+          className="z-10 w-full max-w-md rounded-lg bg-white p-4 shadow-[1px_1px_50px] shadow-blue-500 sm:p-6"
           role="dialog"
           aria-modal="true"
           aria-labelledby="forgot-password-modal-title"
         >
           <h2
             id="forgot-password-modal-title"
-            className="mb-6 text-center text-2xl font-bold"
+            className="mb-4 text-center text-xl font-bold sm:mb-6 sm:text-2xl"
           >
-            {t("auth.login.forgotPassword")}
+            {t("auth.forgotPassword.title")}
           </h2>
 
           <p className="mb-4 text-center text-sm text-gray-600">
