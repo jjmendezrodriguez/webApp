@@ -30,7 +30,7 @@ pero **debe preguntar primero y esperar aprobación** antes de hacerlo.
 ### 💡 Reglas generales
 
 - Si un archivo supera las **300 líneas**, sigue la guía en `AGENTS.md → Code Style Rules`.
-- La IA puede sugerir reorganizar archivos, **pero siempre debe pedir tu aprobación antes** de modificar o crear nuevas estructuras.
+- La IA puede sugerir reorganizar archivos, **pero siempre debe aprobación antes** de modificar o crear nuevas estructuras.
 
 ---
 

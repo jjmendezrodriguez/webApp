@@ -221,7 +221,7 @@ export default function Home() {
             className="btn bg-green-500 hover:bg-green-600"
             onClick={triggerWind}
           >
-            Viento �
+            Viento ⁉️
           </button>
         </div>
         <p className="mt-4 text-sm text-gray-600">
