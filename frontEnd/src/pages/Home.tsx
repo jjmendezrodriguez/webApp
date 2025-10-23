@@ -2,8 +2,10 @@
 // Main landing page with light switch, rain effect, wind effect and animated background
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
   const [isOn, setIsOn] = useState(false);
   const [showRain, setShowRain] = useState(false);
   const [showWind, setShowWind] = useState(false);
@@ -203,7 +205,7 @@ export default function Home() {
       </div>
 
       <h1 className="relative z-10 text-center text-3xl font-bold capitalize sm:text-4xl md:text-5xl">
-        casa campo
+        {t("home.title")}
       </h1>
 
       <div className="card relative z-10 w-full max-w-lg text-center">
@@ -212,24 +214,22 @@ export default function Home() {
             className="btn w-full sm:w-auto"
             onClick={() => setIsOn((on) => !on)}
           >
-            {isOn ? "Apagar luz 💡" : "Prender luz 🕯️"}
+            {isOn ? t("home.lightOn") : t("home.lightOff")}
           </button>
           <button
             className="btn w-full bg-blue-500 hover:bg-blue-600 sm:w-auto"
             onClick={triggerRain}
           >
-            Lluvia 🌧️
+            {t("home.rain")}
           </button>
           <button
             className="btn w-full bg-green-500 hover:bg-green-600 sm:w-auto"
             onClick={triggerWind}
           >
-            Viento 🍃
+            {t("home.wind")}
           </button>
         </div>
-        <p className="mt-4 text-sm text-gray-600">
-          Enciende la luz, haz que llueva o activa el viento
-        </p>
+        <p className="mt-4 text-sm text-gray-600">{t("home.description")}</p>
       </div>
     </div>
   );

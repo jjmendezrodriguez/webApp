@@ -129,5 +129,16 @@
       "invalidPassword": "Contraseña incorrecta",
       "confirmationMismatch": "Debes escribir 'DELETE' exactamente"
     }
+  },
+  "languageSwitcher": {
+    "label": "Idioma"
+  },
+  "home": {
+    "title": "Casa Campo",
+    "lightOn": "Apagar luz 💡",
+    "lightOff": "Prender luz 🕯️",
+    "rain": "Lluvia 🌧️",
+    "wind": "Viento 🍃",
+    "description": "Enciende la luz, haz que llueva o activa el viento"
   }
 }

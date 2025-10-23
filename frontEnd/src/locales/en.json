@@ -129,5 +129,16 @@
       "invalidPassword": "Incorrect password",
       "confirmationMismatch": "You must type 'DELETE' exactly"
     }
+  },
+  "languageSwitcher": {
+    "label": "Language"
+  },
+  "home": {
+    "title": "Country House",
+    "lightOn": "Turn off light 💡",
+    "lightOff": "Turn on light 🕯️",
+    "rain": "Rain 🌧️",
+    "wind": "Wind 🍃",
+    "description": "Turn on the light, make it rain or activate the wind"
   }
 }
