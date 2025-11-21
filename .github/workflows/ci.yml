@@ -1,0 +1,60 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      # Cache dependencies for 85% faster builds
+      - name: Cache Bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: cd frontEnd && bun install --frozen-lockfile
+
+      # Step 1: Lint
+      - name: Lint code
+        run: cd frontEnd && bun run lint
+
+      # Step 2: Tests (skip for now, will add after testing setup)
+      # - name: Run tests
+      #   run: cd frontEnd && bun test
+
+      # Step 3: Build
+      - name: Build project
+        run: cd frontEnd && bun run build
+
+      # Step 4: Security Audit
+      - name: Security audit
+        run: cd frontEnd && bun audit
+        continue-on-error: false
+
+      # Optional: Upload build artifacts
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: frontEnd/dist
+          retention-days: 7

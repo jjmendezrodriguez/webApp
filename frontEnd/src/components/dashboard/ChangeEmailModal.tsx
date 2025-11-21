@@ -3,9 +3,9 @@
 
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { supabase } from "../../services/supabase/db";
-import { AuthInput, PasswordInput } from "../auth";
-import AlertModal from "../AlertModal";
+import { supabase } from "@/services/supabase/db";
+import { AuthInput, PasswordInput } from "@/components/auth";
+import AlertModal from "@/components/AlertModal";
 
 interface ChangeEmailModalProps {
   isOpen: boolean;

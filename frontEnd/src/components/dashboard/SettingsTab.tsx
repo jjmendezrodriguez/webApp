@@ -3,8 +3,8 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcherDashboard from "../LanguageSwitcherDashboard";
-import AlertModal from "../AlertModal";
+import LanguageSwitcherDashboard from "@/components/LanguageSwitcherDashboard";
+import AlertModal from "@/components/AlertModal";
 
 export default function SettingsTab() {
   const { t } = useTranslation();

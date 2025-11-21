@@ -2,7 +2,8 @@
 // Shared form logic for authentication (login and signup)
 
 import { useState, type FormEvent } from "react";
-import { getValidationError } from "../utils/validators";
+import { getValidationError } from "@/utils/validators";
+import { logger } from "@/utils/logger";
 
 interface UseAuthFormOptions {
   onSubmit: (data: AuthFormData) => Promise<void>;
@@ -150,7 +151,7 @@ export default function useAuthForm({
       });
     } catch (err) {
       // Error handling is done in the callback
-      console.error("Form submission error:", err);
+      logger.error("Form submission error", err);
     } finally {
       setLoading(false);
     }

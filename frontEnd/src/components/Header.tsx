@@ -3,10 +3,14 @@
 
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
-import { useAuth } from "../hooks/useAuth";
-import { useProfile } from "../hooks/useProfile";
-import { LoginModal, SignupModal, ForgotPasswordModal } from "./auth";
-import LanguageSwitcher from "./LanguageSwitcher";
+import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
+import {
+  LoginModal,
+  SignupModal,
+  ForgotPasswordModal,
+} from "@/components/auth";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const { isAuthenticated, login, logout, user } = useAuth();

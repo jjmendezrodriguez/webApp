@@ -2,7 +2,10 @@
 // Import this client in any component/service that needs database access
 
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { supabaseConfig, validateSupabaseConfig } from "./config";
+import {
+  supabaseConfig,
+  validateSupabaseConfig,
+} from "@/services/supabase/config";
 
 // Validate environment variables on initialization
 validateSupabaseConfig();

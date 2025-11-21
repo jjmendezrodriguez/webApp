@@ -2,13 +2,13 @@
 // Profile section with personal info, security, and danger zone
 
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
-import { useProfile } from "../../hooks/useProfile";
+import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { useTranslation } from "react-i18next";
-import AlertModal from "../AlertModal";
-import ChangeEmailModal from "./ChangeEmailModal";
-import ChangePasswordModal from "./ChangePasswordModal";
-import DeleteAccountModal from "./DeleteAccountModal";
+import AlertModal from "@/components/AlertModal";
+import ChangeEmailModal from "@/components/dashboard/ChangeEmailModal";
+import ChangePasswordModal from "@/components/dashboard/ChangePasswordModal";
+import DeleteAccountModal from "@/components/dashboard/DeleteAccountModal";
 
 export default function ProfileTab() {
   const { user } = useAuth();

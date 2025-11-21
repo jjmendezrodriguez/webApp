@@ -3,8 +3,8 @@
 
 import { useState, useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../hooks/useAuth";
-import AlertModal from "./AlertModal";
+import { useAuth } from "@/hooks/useAuth";
+import AlertModal from "@/components/AlertModal";
 
 interface ProtectedRouteProps {
   children: ReactNode;

@@ -2,8 +2,9 @@
 // Manages user authentication state with Supabase Auth
 
 import { useState, useEffect, type ReactNode } from "react";
-import { AuthContext } from "./authContext";
-import { supabase } from "../services/supabase/db";
+import { AuthContext } from "@/context/authContext";
+import { supabase } from "@/services/supabase/db";
+import { logger } from "@/utils/logger";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -81,7 +82,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         });
       }
     } catch (error) {
-      console.error("Error checking session:", error);
+      logger.error("Error checking session", error);
     } finally {
       setLoading(false);
     }
@@ -123,7 +124,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setIsAuthenticated(false);
       setUser(null);
     } catch (error) {
-      console.error("Error logging out:", error);
+      logger.error("Error logging out", error);
     }
   };
 

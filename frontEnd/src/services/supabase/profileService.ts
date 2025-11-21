@@ -1,7 +1,8 @@
 // Profile service
 // CRUD operations for user profiles
 
-import { supabase } from "./db";
+import { supabase } from "@/services/supabase/db";
+import { logger } from "@/utils/logger";
 
 export interface Profile {
   id: string;
@@ -42,13 +43,13 @@ export const getProfile = async (): Promise<Profile | null> => {
       .single();
 
     if (error) {
-      console.error("Error fetching profile:", error);
+      logger.error("Error fetching profile", error, { userId: user.id });
       return null;
     }
 
     return data;
   } catch (err) {
-    console.error("Error in getProfile:", err);
+    logger.error("Error in getProfile", err);
     return null;
   }
 };
@@ -81,13 +82,13 @@ export const updateProfile = async (
       .single();
 
     if (error) {
-      console.error("Error updating profile:", error);
+      logger.error("Error updating profile", error, { userId: user.id });
       return null;
     }
 
     return data;
   } catch (err) {
-    console.error("Error in updateProfile:", err);
+    logger.error("Error in updateProfile", err);
     return null;
   }
 };

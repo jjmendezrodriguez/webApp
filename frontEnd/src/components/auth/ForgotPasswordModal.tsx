@@ -2,15 +2,16 @@
 // Modal for password reset via email
 
 import { useTranslation } from "react-i18next";
-import { supabase } from "../../services/supabase/db";
-import { AuthInput } from "./index";
+import { supabase } from "@/services/supabase/db";
+import { AuthInput } from "@/components/auth";
 import { useState, type FormEvent } from "react";
-import { getValidationError } from "../../utils/validators";
-import AlertModal from "../AlertModal";
+import { getValidationError } from "@/utils/validators";
+import AlertModal from "@/components/AlertModal";
 import {
   handleCloseAlert,
   createBackdropClickHandler,
-} from "../../utils/modalHelpers";
+} from "@/utils/modalHelpers";
+import { logger } from "@/utils/logger";
 
 interface ForgotPasswordModalProps {
   isOpen: boolean;
@@ -85,7 +86,7 @@ export default function ForgotPasswordModal({
       setShowSuccessAlert(true);
     } catch (err) {
       setError("auth.errors.loginError");
-      console.error("Password reset error:", err);
+      logger.error("Password reset error", err);
     } finally {
       setLoading(false);
     }

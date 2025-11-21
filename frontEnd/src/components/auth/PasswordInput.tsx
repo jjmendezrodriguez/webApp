@@ -7,7 +7,7 @@ import {
   calculatePasswordStrength,
   getStrengthColor,
   getStrengthTextColor,
-} from "../../utils/passwordStrength";
+} from "@/utils/passwordStrength";
 
 interface PasswordInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;

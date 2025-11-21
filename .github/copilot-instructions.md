@@ -2,15 +2,26 @@
 
 **Project:** React 19 + TypeScript + Vite + Supabase + Tailwind CSS  
 **Package Manager:** Bun  
-**Última actualización:** 2025-10-21
+**Última actualización:** 2025-10-31
+
+## 🎯 Core Principles (CRITICAL - Read First)
+
+- **Always follow instructions** - Never assume unknown or undefined behavior before writing code
+- **Verify first, code second** - Check inputs, data types, and logic flow before implementation
+- **Ask when uncertain** - If information is missing, ask before proceeding
+- **Security by default** - Every decision must consider security implications
+- **Modularity first** - Keep environment-specific configurations isolated
+- **Each module exposes its own public interface** - Never import logic from unrelated features or layers
+- **Check MPC server requirements** - Verify if the project requires connection to an MPC server before implementation
 
 ## Inicio Rápido
 
 ```bash
+cd frontEnd          # Navigate to frontend folder
 bun install          # Instalar dependencias
 bun dev              # Iniciar servidor de desarrollo
-bun build            # Build para producción
-bun lint             # Ejecutar ESLint
+bun run build        # Build para producción
+bun run lint         # Ejecutar ESLint
 ```
 
 ## Arquitectura del Proyecto
@@ -169,6 +180,69 @@ VITE_SUPABASE_ANON_KEY=your-anon-key
 
 **Seguridad:** NUNCA hardcodear keys - siempre usar `import.meta.env.VITE_*`
 
+## 🔒 Security Rules (CRITICAL)
+
+### Security Flow (Apply to ALL critical operations)
+
+```txt
+Authentication → Authorization → Validation → Secure Logging
+```
+
+**Golden Rules:**
+
+1. ✅ **Validate ALL external data** before processing
+2. ❌ **NEVER interpolate unsanitized variables** in SQL, HTML, or shell commands
+3. ❌ **NEVER log sensitive data** (passwords, tokens, credit cards, API keys)
+4. ✅ **Always use environment variables** for secrets (`.env`)
+5. ✅ **Mark sensitive values clearly** with `// 🔒 SECURITY: Do NOT expose publicly`
+
+### Secrets Management
+
+```typescript
+// ❌ NEVER DO THIS
+const API_KEY = 'sk-1234567890abcdef'
+
+// ✅ ALWAYS DO THIS
+const API_KEY = import.meta.env.VITE_API_KEY
+
+// 🔒 SECURITY: Do NOT expose publicly
+export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+```
+
+### Logging Rules (CRITICAL)
+
+```typescript
+// ❌ NEVER use console.log in production
+console.log('User data:', user)
+console.error('Payment failed:', paymentData)
+
+// ✅ ALWAYS use logger (when implemented)
+import { logger } from '@/utils/logger'
+
+logger.info('User logged in', { userId: user.id })
+logger.error('Payment failed', {
+  orderId: payment.orderId,
+  error: error.message,
+  // ❌ NEVER log: password, creditCard, apiKey
+})
+```
+
+**What NEVER to log:**
+
+- ❌ Passwords (plain or hashed)
+- ❌ API keys or tokens
+- ❌ Credit card numbers
+- ❌ SSN or personal identifiers
+- ❌ Full request/response bodies (may contain sensitive data)
+
+**What to log:**
+
+- ✅ User IDs (non-sensitive identifiers)
+- ✅ Action performed (login, logout, update)
+- ✅ Timestamp and duration
+- ✅ Error messages (sanitized)
+- ✅ Request metadata (method, path, status code)
+
 ## Tailwind CSS
 
 - **Approach principal** - clases inline de Tailwind
@@ -178,6 +252,44 @@ VITE_SUPABASE_ANON_KEY=your-anon-key
   ```tsx
   <div className="flex min-h-screen flex-col items-center">
   ```
+
+## Module Boundaries & Import Rules
+
+### ✅ CORRECT: Allowed imports
+
+```typescript
+// ✅ GOOD: Import from services
+import { supabase } from '@/services/supabase/db'
+
+// ✅ GOOD: Import from utils
+import { validateEmail } from '@/utils/validators'
+
+// ✅ GOOD: Import from same feature
+import { LoginForm } from './LoginForm'
+import { useAuth } from '../hooks/useAuth'
+
+// ✅ GOOD: Import from shared/common components
+import { Button } from '@/components/Button'
+import { useDebounce } from '@/hooks/useDebounce'
+```
+
+### ❌ INCORRECT: Cross-feature imports
+
+```typescript
+// ❌ BAD: Importing from another feature directly
+import { getUserData } from '@/features/admin/services/userService'
+// Problem: Creates feature dependency (auth → admin)
+
+// ❌ BAD: Importing UI from services
+import { LoginModal } from '@/services/authService'
+// Problem: Services should not contain UI
+
+// ❌ BAD: Importing business logic from pages
+import { validateUser } from '@/pages/Login'
+// Problem: Pages are for routing, not business logic
+```
+
+**Fix:** Move shared code to `utils/`, `services/`, or `shared/` folder
 
 ## Configuration Files
 
@@ -197,11 +309,17 @@ Crear carpeta `/frontEnd/src/config/` para:
 
 ## Security Checklist
 
-- [ ] Todos los datos externos validados antes de usarse
-- [ ] No hay secrets hardcodeados (usar `.env`)
-- [ ] Sanitizar inputs (SQL, HTML, shell commands)
-- [ ] Flujo de auth: **Authenticate → Authorize → Validate → Log**
-- [ ] Ejecutar `bun audit` antes de deploy
+Before committing any code:
+
+- [ ] All external inputs validated and sanitized
+- [ ] No hardcoded secrets or credentials
+- [ ] Environment variables used for sensitive data
+- [ ] No sensitive information in error messages
+- [ ] No `console.log()` statements (use logger when implemented)
+- [ ] Sensitive data not logged (passwords, tokens, cards)
+- [ ] SQL queries use parameterized statements (Supabase handles this)
+- [ ] Authentication + authorization implemented where needed
+- [ ] Execute `bun audit` before deploy
 
 ## Git Workflow
 
@@ -214,14 +332,17 @@ Convención de commits:
 - `docs:` cambios en documentación
 - `chore:` tareas de mantenimiento
 
-## Testing (Solo Backend - aún no hay en frontend)
+## Testing (Not Yet Configured - Future Enhancement)
 
-Si se añade backend:
+**Current status:** Testing setup pending
 
-- Unit tests (Jest recomendado)
-- Coverage mínimo 80%
-- Mockear servicios externos
-- Nombres descriptivos para tests: `should return 401 when token expired`
+**When implemented, follow:**
+
+- Unit tests (Vitest + Testing Library)
+- Coverage mínimo 70%+
+- Test priority: Utils → Hooks → Components
+- Mockear servicios externos (Supabase, API calls)
+- Nombres descriptivos: `should return error when email is invalid`
 
 ## Archivos Clave
 
@@ -238,6 +359,32 @@ Si se añade backend:
 - Antes de crear nuevas carpetas o módulos, **preguntar y esperar aprobación**
 - Consultar `PROJECT_STRUCTURE.md` para saber dónde ubicar nuevos archivos
 - Priorizar modularidad, rendimiento y seguridad
+
+---
+
+## 📚 Related Documentation
+
+This file is a **summary** of the complete coding standards. For full details:
+
+- **`frontEnd/AGENTS.md`** - Complete coding standards (3000+ lines)
+
+  - Security best practices
+  - Testing guidelines
+  - CI/CD pipeline setup
+  - Performance optimization
+  - Scalability patterns
+
+- **`frontEnd/PROJECT_STRUCTURE.md`** - File organization guide
+  - Where to place each file type
+  - Type-based vs Feature-based structure
+  - Module boundaries and import rules
+
+**Priority order for reading:**
+
+1. This file (quick reference)
+2. `AGENTS.md` sections 1-2 (Security & Architecture) 🔴
+3. `PROJECT_STRUCTURE.md` (file placement rules)
+4. `AGENTS.md` remaining sections (as needed)
 
 ## Licencia
 

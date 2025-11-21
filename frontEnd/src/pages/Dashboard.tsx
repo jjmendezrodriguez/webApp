@@ -1,12 +1,12 @@
 // Dashboard page component
 // Main dashboard view with animated tabs for Profile and Settings
 
-import { useAuth } from "../hooks/useAuth";
-import { useProfile } from "../hooks/useProfile";
+import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { useTranslation } from "react-i18next";
-import AnimatedTabs from "../components/AnimatedTabs";
-import ProfileTab from "../components/dashboard/ProfileTab";
-import SettingsTab from "../components/dashboard/SettingsTab";
+import AnimatedTabs from "@/components/AnimatedTabs";
+import ProfileTab from "@/components/dashboard/ProfileTab";
+import SettingsTab from "@/components/dashboard/SettingsTab";
 
 export default function Dashboard() {
   const { user } = useAuth();

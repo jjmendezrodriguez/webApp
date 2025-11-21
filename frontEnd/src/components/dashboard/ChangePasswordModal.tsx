@@ -3,10 +3,10 @@
 
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { supabase } from "../../services/supabase/db";
-import { PasswordInput } from "../auth";
-import AlertModal from "../AlertModal";
-import { validatePassword } from "../../utils/validators";
+import { supabase } from "@/services/supabase/db";
+import { PasswordInput } from "@/components/auth";
+import AlertModal from "@/components/AlertModal";
+import { validatePassword } from "@/utils/validators";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;

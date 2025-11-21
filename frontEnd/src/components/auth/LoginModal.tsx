@@ -2,12 +2,13 @@
 // Modal for user authentication with email/password and Google OAuth
 
 import { useTranslation } from "react-i18next";
-import { supabase } from "../../services/supabase/db";
-import { AuthInput, PasswordInput, OAuthButton } from "./index";
-import useAuthForm from "../../hooks/useAuthForm";
-import AlertModal from "../AlertModal";
+import { supabase } from "@/services/supabase/db";
+import { AuthInput, PasswordInput, OAuthButton } from "@/components/auth";
+import useAuthForm from "@/hooks/useAuthForm";
+import AlertModal from "@/components/AlertModal";
 import { useState } from "react";
-import { createBackdropClickHandler } from "../../utils/modalHelpers";
+import { createBackdropClickHandler } from "@/utils/modalHelpers";
+import { logger } from "@/utils/logger";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -89,7 +90,7 @@ export default function LoginModal({
         }
       } catch (err) {
         setGeneralError("auth.errors.loginError");
-        console.error("Login error:", err);
+        logger.error("Login error", err);
       }
     },
   });
@@ -118,7 +119,7 @@ export default function LoginModal({
       // OAuth redirects automatically, no need to handle success here
     } catch (err) {
       setGeneralError("auth.errors.loginError");
-      console.error("Google login error:", err);
+      logger.error("Google login error", err);
     }
   };
 

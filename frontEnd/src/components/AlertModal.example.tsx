@@ -2,7 +2,7 @@
 // This file demonstrates how to use the AlertModal in your components
 
 import { useState } from "react";
-import AlertModal from "./AlertModal";
+import AlertModal from "@/components/AlertModal";
 
 export default function AlertModalExample() {
   const [isOpen, setIsOpen] = useState(false);

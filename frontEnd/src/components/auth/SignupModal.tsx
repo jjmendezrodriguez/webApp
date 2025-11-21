@@ -3,13 +3,14 @@
 
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { supabase } from "../../services/supabase/db";
-import { AuthInput, PasswordInput, OAuthButton } from "./index";
-import useAuthForm from "../../hooks/useAuthForm";
-import AlertModal from "../AlertModal";
+import { supabase } from "@/services/supabase/db";
+import { AuthInput, PasswordInput, OAuthButton } from "@/components/auth";
+import useAuthForm from "@/hooks/useAuthForm";
+import AlertModal from "@/components/AlertModal";
 import { useState } from "react";
-import { validatePassword } from "../../utils/validators";
-import { createBackdropClickHandler } from "../../utils/modalHelpers";
+import { validatePassword } from "@/utils/validators";
+import { createBackdropClickHandler } from "@/utils/modalHelpers";
+import { logger } from "@/utils/logger";
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -70,7 +71,7 @@ export default function SignupModal({
         setShowSuccessAlert(true);
       } catch (err) {
         setGeneralError("auth.errors.signupError");
-        console.error("Signup error:", err);
+        logger.error("Signup error", err);
       }
     },
     requireConfirmPassword: true,
@@ -101,7 +102,7 @@ export default function SignupModal({
       // OAuth redirects automatically
     } catch (err) {
       setGeneralError("auth.errors.signupError");
-      console.error("Google signup error:", err);
+      logger.error("Google signup error", err);
     }
   };
 

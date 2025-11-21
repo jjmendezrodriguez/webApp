@@ -7,7 +7,8 @@ import {
   updateProfile,
   type Profile,
   type ProfileUpdate,
-} from "../services/supabase/profileService";
+} from "@/services/supabase/profileService";
+import { logger } from "@/utils/logger";
 
 /**
  * useProfile hook
@@ -38,7 +39,7 @@ export const useProfile = () => {
       setProfile(data);
     } catch (err) {
       setError("Error loading profile");
-      console.error("Error fetching profile:", err);
+      logger.error("Error fetching profile", err);
     } finally {
       setLoading(false);
     }
@@ -67,7 +68,7 @@ export const useProfile = () => {
       }
     } catch (err) {
       setError("Error updating profile");
-      console.error("Error updating profile:", err);
+      logger.error("Error updating profile", err);
       return false;
     } finally {
       setUpdating(false);
