@@ -37,9 +37,9 @@ jobs:
       - name: Lint code
         run: cd frontEnd && bun run lint
 
-      # Step 2: Tests (skip for now, will add after testing setup)
-      # - name: Run tests
-      #   run: cd frontEnd && bun test
+      # Step 2: Tests
+      - name: Run tests
+        run: cd frontEnd && bun test:run
 
       # Step 3: Build
       - name: Build project
