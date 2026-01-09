@@ -14,6 +14,15 @@ export default defineConfig({
     // Setup file runs before each test file
     setupFiles: './src/test/setup.ts',
 
+    // Exclude patterns for test discovery
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/coverage/**',
+      '**/build/**',
+      '**/.{git,cache}/**',
+    ],
+
     // Coverage configuration
     coverage: {
       provider: 'v8',
@@ -30,9 +39,6 @@ export default defineConfig({
 
     // Test file patterns
     include: ['src/**/*.{test,spec}.{js,jsx,ts,tsx}'],
-
-    // Watch mode ignore patterns
-    watchExclude: ['**/node_modules/**', '**/dist/**'],
   },
 
   // Path aliases (same as vite.config.ts)
