@@ -7,6 +7,20 @@ import path from 'path'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: './',
+
+  // Watch mode optimization
+  server: {
+    watch: {
+      ignored: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/coverage/**',
+        '**/.git/**',
+        '**/.env*',
+      ],
+    },
+  },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

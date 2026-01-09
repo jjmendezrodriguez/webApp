@@ -22,13 +22,25 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
 # Environment files
 .env
+.env.local
+.env.production
+.env.*.local
 
-# mendez preferences style
-AGENTS.md
+# Testing
+coverage/
+.nyc_output/
 
-#security files
-SECURITY_FIXES.md
-SECURITY_STATUS.md
-LOGIN_SYSTEM.md
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
