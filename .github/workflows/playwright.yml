@@ -118,7 +118,7 @@ jobs:
 
             # Listar artifacts descargados (debugging)
             - name: List downloaded artifacts
-              run: ls -R all-reports
+              run: ls -R all-reports || echo "No artifacts found"
 
             # TODO: Aquí podrías generar un reporte consolidado
             # o publicar a GitHub Pages
