@@ -17,108 +17,115 @@ name: Playwright E2E Tests
 
 # 🔄 Cuándo ejecutar este workflow
 on:
-    push:
-        branches: [main, develop]
-    pull_request:
-        branches: [main, develop]
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 # 📋 Jobs a ejecutar
 jobs:
-    test-e2e:
-        # Sistema operativo (Ubuntu latest)
-        runs-on: ubuntu-latest
+  test-e2e:
+    # Sistema operativo (Ubuntu latest)
+    runs-on: ubuntu-latest
 
-        # Estrategia de matriz - Ejecutar en múltiples navegadores
-        # Opcional: Comentar para ejecutar solo en Chromium y ahorrar tiempo
-        strategy:
-            fail-fast: false # No cancelar otros si uno falla
-            matrix:
-                browser: [chromium, firefox, webkit]
+    # Estrategia de matriz - Ejecutar en múltiples navegadores
+    # Opcional: Comentar para ejecutar solo en Chromium y ahorrar tiempo
+    strategy:
+      fail-fast: false # No cancelar otros si uno falla
+      matrix:
+        browser: [chromium, firefox, webkit]
 
-        steps:
-            # 1️⃣ Checkout del código
-            - name: Checkout repository
-              uses: actions/checkout@v4
+    steps:
+      # 1️⃣ Checkout del código
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            # 2️⃣ Setup Bun (runtime JavaScript)
-            - name: Setup Bun
-              uses: oven-sh/setup-bun@v2
-              with:
-                  bun-version: latest
+      # 2️⃣ Setup Bun (runtime JavaScript)
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
-            # 3️⃣ Caché de dependencias node_modules
-            # Acelera workflow en ~5 minutos
-            - name: Cache dependencies
-              uses: actions/cache@v4
-              with:
-                  path: |
-                      ~/.bun/install/cache
-                      frontEnd/node_modules
-                  key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
-                  restore-keys: |
-                      ${{ runner.os }}-bun-
+      # 3️⃣ Caché de dependencias node_modules
+      # Acelera workflow en ~5 minutos
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            frontEnd/node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
 
-            # 4️⃣ Instalar dependencias del proyecto
-            - name: Install dependencies
-              working-directory: ./frontEnd
-              run: bun install --frozen-lockfile
+      # 4️⃣ Instalar dependencias del proyecto
+      - name: Install dependencies
+        working-directory: ./frontEnd
+        run: bun install --frozen-lockfile
 
-            # 5️⃣ Instalar navegadores de Playwright
-            # Solo instala el navegador especificado en la matriz
-            - name: Install Playwright browsers
-              working-directory: ./frontEnd
-              run: bunx playwright install --with-deps ${{ matrix.browser }}
+      # 5️⃣ Instalar navegadores de Playwright
+      # Solo instala el navegador especificado en la matriz
+      - name: Install Playwright browsers
+        working-directory: ./frontEnd
+        run: bunx playwright install --with-deps ${{ matrix.browser }}
 
-            # 6️⃣ Ejecutar tests E2E
-            # Playwright inicia el servidor automáticamente con webServer config
-            - name: Run Playwright tests
-              working-directory: ./frontEnd
-              run: bun test:e2e --project=${{ matrix.browser }}
-              env:
-                  # Variables de entorno necesarias
-                  CI: true
-                  # 🔒 Supabase credentials (required for auth tests)
-                  VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-                  VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+      # 6️⃣ Ejecutar tests E2E
+      # Playwright inicia el servidor automáticamente con webServer config
+      - name: Run Playwright tests
+        working-directory: ./frontEnd
+        run: bun test:e2e --project=${{ matrix.browser }}
+        env:
+          # Variables de entorno necesarias
+          CI: true
+          # 🔒 Supabase credentials (required for auth tests)
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-            # 7️⃣ Subir reporte HTML (solo si falla)
-            - name: Upload Playwright report
-              uses: actions/upload-artifact@v4
-              if: failure()
-              with:
-                  name: playwright-report-${{ matrix.browser }}
-                  path: frontEnd/playwright-report/
-                  retention-days: 7 # Mantener 7 días
+      # 7️⃣ Subir reporte HTML (solo si falla)
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report-${{ matrix.browser }}
+          path: frontEnd/playwright-report/
+          retention-days: 7 # Mantener 7 días
 
-            # 8️⃣ Subir test results (screenshots, videos, traces)
-            - name: Upload test results
-              uses: actions/upload-artifact@v4
-              if: failure()
-              with:
-                  name: test-results-${{ matrix.browser }}
-                  path: frontEnd/test-results/
-                  retention-days: 7
+      # 8️⃣ Subir test results (screenshots, videos, traces)
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-results-${{ matrix.browser }}
+          path: frontEnd/test-results/
+          retention-days: 7
 
-    # 📊 Job que depende de test-e2e
-    # Genera reporte consolidado (opcional)
-    report:
-        needs: test-e2e
-        runs-on: ubuntu-latest
-        if: always() # Ejecutar incluso si tests fallan
+  # 📊 Job que depende de test-e2e
+  # Genera reporte consolidado (opcional)
+  report:
+    needs: test-e2e
+    runs-on: ubuntu-latest
+    if: always() # Ejecutar incluso si tests fallan
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            # Descargar todos los reportes
-            - name: Download all artifacts
-              uses: actions/download-artifact@v4
-              with:
-                  path: all-reports
+      # Descargar todos los reportes (si existen)
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          path: all-reports
 
-            # Listar artifacts descargados (debugging)
-            - name: List downloaded artifacts
-              run: ls -R all-reports
+      # Listar artifacts descargados (debugging)
+      - name: List downloaded artifacts
+        run: |
+          if [ -d "all-reports" ] && [ "$(ls -A all-reports 2>/dev/null)" ]; then
+            echo "📦 Artifacts encontrados:"
+            ls -R all-reports
+          else
+            echo "✅ No hay artifacts - todos los tests pasaron exitosamente"
+          fi
 
-            # TODO: Aquí podrías generar un reporte consolidado
-            # o publicar a GitHub Pages
+      # TODO: Aquí podrías generar un reporte consolidado
+      # o publicar a GitHub Pages
