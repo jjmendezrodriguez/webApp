@@ -134,7 +134,13 @@
     "label": "Language"
   },
   "info": {
-    "underConstruction": "This space is under construction, it's for the WebApp info"
+    "title": "About This Project",
+    "subtitle": "Functional Authentication Template",
+    "description": "This web application has been designed as a functional template that demonstrates, in a clear and practical way, how a login and user registration (signup) system operates.",
+    "purpose": "Its purpose is to serve as a solid and reusable foundation for developing web applications that require authentication, allowing developers to understand the structure, flow, and best practices behind a secure and scalable access system.",
+    "technologies": {
+      "title": "Technologies Used"
+    }
   },
   "home": {
     "title": "Country House",

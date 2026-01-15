@@ -134,7 +134,13 @@
     "label": "Idioma"
   },
   "info": {
-    "underConstruction": "Este espacio está en construcción, es para la info de la WebApp"
+    "title": "Acerca de este Proyecto",
+    "subtitle": "Template Funcional de Autenticación",
+    "description": "Esta web ha sido diseñada como un template funcional que demuestra, de forma clara y práctica, cómo opera un sistema de login y registro de usuarios (signup).",
+    "purpose": "Su propósito es servir como base sólida y reutilizable para el desarrollo de aplicaciones web que requieren autenticación, permitiendo a desarrolladores comprender la estructura, el flujo y las buenas prácticas detrás de un sistema de acceso seguro y escalable.",
+    "technologies": {
+      "title": "Tecnologías Utilizadas"
+    }
   },
   "home": {
     "title": "Casa Campo",
