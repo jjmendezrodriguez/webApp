@@ -3,6 +3,7 @@
     "login": {
       "title": "Iniciar Sesión",
       "email": "Email",
+      "emailPlaceholder": "ejemplo@mail.com",
       "password": "Contraseña",
       "submit": "Iniciar Sesión",
       "loading": "Iniciando sesión...",

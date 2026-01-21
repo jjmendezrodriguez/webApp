@@ -202,7 +202,7 @@ export default function LoginModal({
               value={formState.email}
               onChange={(e) => handleEmailChange(e.target.value)}
               error={formState.emailError}
-              placeholder="tu@email.com"
+              placeholder={t('auth.login.emailPlaceholder')}
               disabled={formState.loading}
             />
 

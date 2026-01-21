@@ -3,6 +3,7 @@
     "login": {
       "title": "Log In",
       "email": "Email",
+      "emailPlaceholder": "sample@mail.com",
       "password": "Password",
       "submit": "Log In",
       "loading": "Logging in...",
